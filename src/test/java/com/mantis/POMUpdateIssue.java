@@ -8,10 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class POMUpdateIssue {
 
-	By SummaryButton = By.xpath("//*[@id='sidebar']/ul/li[6]/a/span");
-	By ReportIssueButton = By.xpath("//*[@id='sidebar']/ul/li[3]/a/span");
-	By ViewIssueButton = By.xpath("//*[@id='sidebar']/ul/li[2]/a/span");
-	By viewissuebutton = By.xpath("//*[@id='sidebar']/ul/li[2]/a/i");
 	By editButton = By.xpath("//input[@type='submit'][@value='Edit']");
 	By statusButton = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']/select");
 	By resolution = By.xpath("//*[@id='resolution']");
@@ -43,10 +39,6 @@ public class POMUpdateIssue {
 		return !driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php");
 	}
 
-	public void goToViewIssuePage() throws NoSuchElementException {
-		driver.findElement(ViewIssueButton).click();
-	}
-
 	public void clickOnIssue(String issueId) throws NoSuchElementException {
 		driver.findElement(By.linkText(issueId)).click();
 	}
@@ -72,7 +64,6 @@ public class POMUpdateIssue {
 	public void fetchSummaryDetails(String sever, String catog, String statusc) throws NoSuchElementException {
 
 		IssueVariable iv = new IssueVariable();
-		driver.findElement(SummaryButton).click();
 
 		reqSummary[0] = driver.findElement(SummaryProject).getText();
 		if (!driver.findElements(By.xpath(summaryStatus + statusc + traverse)).isEmpty())
@@ -93,8 +84,6 @@ public class POMUpdateIssue {
 
 		boolean status = false;
 		int count = 0;
-
-		driver.findElement(SummaryButton).click();
 
 		if (driver.findElement(SummaryProject).getText()
 				.equals(Integer.toString(Integer.parseInt(reqSummary[0]) + 1))) {
@@ -123,8 +112,7 @@ public class POMUpdateIssue {
 			}
 		}
 		
-		if(count == 4)
-		{
+		if(count == 4) {
 			status = true;
 		}
 

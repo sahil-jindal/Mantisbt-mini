@@ -48,6 +48,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "FETCH SUMMARY DETAILS");
 
 		try {
+            pomSidebar.goToSummaryPage();
             pomUpdateIssue.fetchSummaryDetails(sever, catog, stat);
             pomSidebar.goToReportIssuePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
@@ -72,7 +73,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
 
         try {
-            pomUpdateIssue.goToViewIssuePage();
+            pomSidebar.goToViewIssuePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (NoSuchElementException e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
@@ -130,7 +131,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
 
 		try {
-            pomUpdateIssue.goToViewIssuePage();
+            pomSidebar.goToViewIssuePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (NoSuchElementException e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
@@ -176,6 +177,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "VALIDATE SUMMARY PAGE");
 
         try {
+            pomSidebar.goToSummaryPage();
             status = pomUpdateIssue.validateSummary(sever, catog, stat);
             System.out.printf(" %-7s |", "PASS");
         } catch (Exception e) {
