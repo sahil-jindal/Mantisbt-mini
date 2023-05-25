@@ -1,15 +1,13 @@
 package stepdefinitions;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 import com.mantis.POMLoginClass;
+import com.mantis.POMLogoutMantisbt;
 import com.utility.DriverLib;
-
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
+import org.openqa.selenium.WebDriver;
 
 public class Hooks {
 
@@ -30,9 +28,8 @@ public class Hooks {
 
 	@After
 	public void logout() {
-		driver = libDriver.getWebDriver();
-		driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/i[2]")).click();
-		driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/ul/li[4]/a")).click();
+		POMLogoutMantisbt logout = new POMLogoutMantisbt(driver);
+		logout.logout();
 		System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "", "LOGOUT", "PASS", "");
 	}
 
