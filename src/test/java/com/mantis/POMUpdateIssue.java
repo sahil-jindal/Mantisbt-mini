@@ -1,4 +1,4 @@
-package com.mantis.POM;
+package com.mantis;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

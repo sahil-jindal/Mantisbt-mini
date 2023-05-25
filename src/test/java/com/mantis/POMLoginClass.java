@@ -1,4 +1,4 @@
-package com.mantis.POM;
+package com.mantis;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

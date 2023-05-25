@@ -1,4 +1,4 @@
-package TestRunner;
+package testrunner;
 
 import org.testng.annotations.Listeners;
 
@@ -8,7 +8,7 @@ import io.cucumber.testng.CucumberOptions;
 @Listeners(ListenerTest.class)
 @CucumberOptions(
 	features = "Features",
-	glue = "StepDefinitions",
+	glue = "stepdefinitions",
 	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
 //	tags = "@ReportIssue"
 //	tags = "@UpdateIssue"

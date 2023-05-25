@@ -1,4 +1,4 @@
-package com.mantis.POM;
+package com.mantis;
 
 import java.util.List;
 

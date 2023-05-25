@@ -1,9 +1,9 @@
-package StepDefinitions;
+package stepdefinitions;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import com.mantis.POM.POMLoginClass;
+import com.mantis.POMLoginClass;
 import com.utility.DriverLib;
 
 import io.cucumber.java.After;

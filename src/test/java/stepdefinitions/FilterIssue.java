@@ -1,11 +1,11 @@
-package StepDefinitions;
+package stepdefinitions;
 
 import static org.testng.Assert.fail;
 
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-import com.mantis.POM.POMFilterIssues;
+import com.mantis.POMFilterIssues;
 import com.utility.DriverLib;
 
 import io.cucumber.java.en.Given;
