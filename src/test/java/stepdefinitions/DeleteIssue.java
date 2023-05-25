@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import com.mantis.POMDeleteIssue;
+import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
@@ -15,12 +16,14 @@ public class DeleteIssue {
 
 	private DriverLib driverLib = new DriverLib();
 	private WebDriver driver = driverLib.getWebDriver();
-	private POMDeleteIssue di = new POMDeleteIssue(driver);
-	private POMReportIssue ri = new POMReportIssue(driver);
+
+	private POMDeleteIssue pomDeleteIssue = new POMDeleteIssue(driver);
+	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
+	private POMNavbar pomNavbar = new POMNavbar(driver);
+
 	private String issueId = "";
 
-	public DeleteIssue()
-	{
+	public DeleteIssue() {
 		System.out.printf("-----------------------------------------------------------------------------------%n");
 		System.out.printf("| %-12s |", "DELETE ISSUE");
 	}
@@ -29,7 +32,7 @@ public class DeleteIssue {
 	public void user_is_on_now_on_homepage() {
 		System.out.printf(" %-40s |","LOGIN");
 		try {
-			di.checkHomePage();
+			pomNavbar.checkHomePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -43,13 +46,13 @@ public class DeleteIssue {
 			String prior, String summary, String description) {
 		System.out.printf("| %-12s | %-40s |","","CREATE ISSUE");
 		try {
-			ri.goToReportIssuePage();
+			pomReportIssue.goToReportIssuePage();
 		} catch (Exception e) {
 			fail("Exception in Report issue page");
 		}
 		try {
 			Thread.sleep(3000);
-			issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
+			issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -61,7 +64,7 @@ public class DeleteIssue {
 	public void user_click_on_view_issues_button_for_delete() {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 		try {
-			di.goToViewIssuePage();
+			pomDeleteIssue.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -73,7 +76,7 @@ public class DeleteIssue {
 	public void user_clicks_on_a_issue_id_for_delete() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE ID");
 		try {
-			di.clickOnIssueId(issueId);
+			pomDeleteIssue.clickOnIssueId(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -85,7 +88,7 @@ public class DeleteIssue {
 	public void user_should_reach_on_a_delete_issue_page_and_click_on_delete() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON DELETE BUTTON");
 		try {
-			di.clickOnDeleteButton();
+			pomDeleteIssue.clickOnDeleteButton();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -97,7 +100,7 @@ public class DeleteIssue {
 	public void go_to_the_view_issue_page() {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 		try {
-			di.goToViewIssuePage();
+			pomDeleteIssue.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -110,7 +113,7 @@ public class DeleteIssue {
 		boolean status = false;
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ISSUE ID DELETED");
 		try {
-			status = di.validateDelete(issueId);
+			status = pomDeleteIssue.validateDelete(issueId);
 			System.out.printf(" %-7s |","PASS");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |","FAIL");

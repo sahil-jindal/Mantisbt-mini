@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
 import com.mantis.POMUpdateIssue;
 import com.utility.DriverLib;
@@ -15,8 +16,11 @@ public class UpdateIssue {
 
 	private DriverLib driverLib = new DriverLib();
 	private WebDriver driver = driverLib.getWebDriver();
-	private POMUpdateIssue ui = new POMUpdateIssue(driver);
-	private POMReportIssue ri = new POMReportIssue(driver);	
+
+	private POMUpdateIssue pomUpdateIssue = new POMUpdateIssue(driver);
+	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
+	private POMNavbar pomNavbar = new POMNavbar(driver);
+
 	private String issueId;
 
 	public UpdateIssue() {
@@ -28,7 +32,7 @@ public class UpdateIssue {
 	public void user_is_on_currently_on_homepage() {
 		System.out.printf(" %-40s |","LOGIN");
 		try {
-			ui.checkHomePage();
+			pomNavbar.checkHomePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -41,8 +45,8 @@ public class UpdateIssue {
 			String description, String stat) {
 		System.out.printf("| %-12s | %-40s |","","FETCH SUMMARY DETAILS");
 		try {
-			ui.fetchSummaryDetails(sever , catog , stat);
-			ri.goToReportIssuePage();
+			pomUpdateIssue.fetchSummaryDetails(sever , catog , stat);
+			pomReportIssue.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -51,7 +55,7 @@ public class UpdateIssue {
 		System.out.printf("| %-12s | %-40s |","","CREATE ISSUE");
 
 		try {
-			issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
+			issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -64,7 +68,7 @@ public class UpdateIssue {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 
 		try {
-			ui.goToViewIssuePage();
+			pomUpdateIssue.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -77,7 +81,7 @@ public class UpdateIssue {
 	public void user_clicks_on_a_issue_id() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE ID");
 		try {
-			ui.clickOnIssue(issueId);
+			pomUpdateIssue.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 
 		} catch (Exception e) {
@@ -91,7 +95,7 @@ public class UpdateIssue {
 	public void user_clicks_on_edit_button() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON EDIT BUTTON");
 		try {
-			ui.clickOnEditButton();
+			pomUpdateIssue.clickOnEditButton();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 			Thread.sleep(1000);
 		} catch (Exception e) {
@@ -107,7 +111,7 @@ public class UpdateIssue {
 		boolean status = false;
 		System.out.printf("| %-12s | %-40s |","","UPDATE ISSUE");
 		try {
-			status = ui.updateIssue(stat, resolution);
+			status = pomUpdateIssue.updateIssue(stat, resolution);
 			if (status) {
 				System.out.printf(" %-7s |%-12s |%n","PASS", "");
 			} else {
@@ -124,7 +128,7 @@ public class UpdateIssue {
 	public void go_to_view_issue_page_for_update() {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 		try {
-			ui.goToViewIssuePage();
+			pomUpdateIssue.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -136,7 +140,7 @@ public class UpdateIssue {
 	public void click_on_issue_updated() {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE UPDATED");
 		try {
-			ui.clickOnIssue(issueId);
+			pomUpdateIssue.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -151,7 +155,7 @@ public class UpdateIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ON ISSUE PAGE");
 
 		try {
-			status = ui.validateUpdate(stat, resolution);
+			status = pomUpdateIssue.validateUpdate(stat, resolution);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");
@@ -170,7 +174,7 @@ public class UpdateIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE SUMMARY PAGE");
 		
 			try {
-				status =  ui.validateSummary( sever , catog , stat );
+				status =  pomUpdateIssue.validateSummary( sever , catog , stat );
 				System.out.printf(" %-7s |","PASS");
 			} catch (Exception e) {
 				System.out.printf(" %-7s |%-12s |%n","FAIL", "FAILURE");

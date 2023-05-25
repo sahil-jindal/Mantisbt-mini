@@ -17,10 +17,6 @@ public class POMDeleteIssue {
 		this.driver = driver;
 	}
 
-	public boolean checkHomePage() throws NoSuchElementException {
-		return driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/span")).isDisplayed();
-	}
-
 	public void goToReportIssuePage() throws NoSuchElementException {
 		driver.findElement(ReportIssueButton).click();
 	}

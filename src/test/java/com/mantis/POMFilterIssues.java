@@ -1,12 +1,12 @@
 package com.mantis;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class POMFilterIssues {
 
@@ -29,10 +29,6 @@ public class POMFilterIssues {
 
 	public POMFilterIssues(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public boolean checkHomePage() throws NoSuchElementException {
-		return driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/span")).isDisplayed();
 	}
 
 	public void goToViewIssuePage() throws NoSuchElementException {

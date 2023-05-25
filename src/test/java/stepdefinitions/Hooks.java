@@ -1,7 +1,7 @@
 package stepdefinitions;
 
 import com.mantis.POMLoginClass;
-import com.mantis.POMLogoutMantisbt;
+import com.mantis.POMNavbar;
 import com.utility.DriverLib;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
@@ -28,7 +28,7 @@ public class Hooks {
 
 	@After
 	public void logout() {
-		POMLogoutMantisbt logout = new POMLogoutMantisbt(driver);
+		POMNavbar logout = new POMNavbar(driver);
 		logout.logout();
 		System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "", "LOGOUT", "PASS", "");
 	}

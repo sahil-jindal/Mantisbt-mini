@@ -52,10 +52,6 @@ public class POMUpdateIssue {
 		return status;
 	}
 
-	public boolean checkHomePage() throws NoSuchElementException {
-		return driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/span")).isDisplayed();
-	}
-
 	public void goToViewIssuePage() throws NoSuchElementException {
 		driver.findElement(ViewIssueButton).click();
 	}

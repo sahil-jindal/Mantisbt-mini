@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
@@ -14,7 +15,10 @@ public class ReportIssue {
 
 	private DriverLib driverLib = new DriverLib();
 	private WebDriver driver = driverLib.getWebDriver();
-	private POMReportIssue ri = new POMReportIssue(driver);
+
+	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
+	private POMNavbar pomNavbar = new POMNavbar(driver);
+
 	private String issueId;
 
 	public ReportIssue() {
@@ -27,7 +31,7 @@ public class ReportIssue {
 		System.out.printf(" %-40s |","LOGIN");
 		
 		try {
-			ri.checkHomePage();
+			pomNavbar.checkHomePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -40,7 +44,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","REPORT ISSUE BUTTON");
 		
 		try {
-			ri.goToReportIssuePage();
+			pomReportIssue.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -55,8 +59,8 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","FETCH SUMMARY DETAILS");
 		
 		try {
-			ri.fetchSummaryDetails(sever, catog);
-			ri.goToReportIssuePage();
+			pomReportIssue.fetchSummaryDetails(sever, catog);
+			pomReportIssue.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -66,7 +70,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","CREATE ISSUE");
 		
 		try {
-			issueId = ri.createIssue(catog, repro, sever, prior, summary, description);
+			issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -79,7 +83,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 		
 		try {
-			ri.goToViewIssuePage();
+			pomReportIssue.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			fail("Exception in View Issue page button");
@@ -91,7 +95,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE GENERATED");
 		
 		try {
-			ri.clickOnIssue(issueId);
+			pomReportIssue.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -107,7 +111,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ON ISSUE PAGE");
 		
 		try {
-			status = ri.validateIssue(catog, repro, sever, prior, summary, description);
+			status = pomReportIssue.validateIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");
@@ -129,7 +133,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE SUMMARY PAGE");
 
 		try {
-			status = ri.validateSummary(sever, catog);
+			status = pomReportIssue.validateSummary(sever, catog);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");
