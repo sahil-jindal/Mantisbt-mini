@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public class POMLoginClass {
 
-	By UN = By.xpath("//*[@id=\"username\"]");
-	By PWD = By.xpath("//*[@id=\"password\"]");
-	By SUBMIT = By.xpath("//input[@type='submit']");
+	By usernameField = By.xpath("//*[@id='username']");
+	By passwordField = By.xpath("//*[@id='password']");
+	By submitButton = By.xpath("//input[@type='submit']");
 
 	WebDriver driver;
 
@@ -15,18 +15,15 @@ public class POMLoginClass {
 		this.driver = driver;
 	}
 
-	public WebDriver login(String un, String pwd) {
+	public void login(String un, String pwd) {
 		try {
-
 			driver.get("http://localhost/mantisbt/login_page.php");
-			driver.findElement(UN).sendKeys(un);
-			driver.findElement(SUBMIT).click();
-			driver.findElement(PWD).sendKeys(pwd);
-			driver.findElement(SUBMIT).click();
+			driver.findElement(usernameField).sendKeys(un);
+			driver.findElement(submitButton).click();
+			driver.findElement(passwordField).sendKeys(pwd);
+			driver.findElement(submitButton).click();
 		} catch (Exception e) {
 			System.out.println("Login Failed");
 		}
-
-		return driver;
 	}
 }
