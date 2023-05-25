@@ -8,15 +8,15 @@ import org.openqa.selenium.support.ui.Select;
 
 public class POMUpdateIssue {
 
-	By SummaryButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[6]/a/span");
-	By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
-	By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
-	By viewissuebutton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/i");
+	By SummaryButton = By.xpath("//*[@id='sidebar']/ul/li[6]/a/span");
+	By ReportIssueButton = By.xpath("//*[@id='sidebar']/ul/li[3]/a/span");
+	By ViewIssueButton = By.xpath("//*[@id='sidebar']/ul/li[2]/a/span");
+	By viewissuebutton = By.xpath("//*[@id='sidebar']/ul/li[2]/a/i");
 	By editButton = By.xpath("//input[@type='submit'][@value='Edit']");
 	By statusButton = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']/select");
-	By resolution = By.xpath("//*[@id=\"resolution\"]");
-	By updateButton = By.xpath("//*[@id=\"update_bug_form\"]/div/div[3]/input");
-	By newStatus = By.xpath("//*[@id=\"history\"]/div[2]/div/div/table/tbody/tr[last()-1]/td[last()]");
+	By resolution = By.xpath("//*[@id='resolution']");
+	By updateButton = By.xpath("//*[@id='update_bug_form']/div/div[3]/input");
+	By newStatus = By.xpath("//*[@id='history']/div[2]/div/div/table/tbody/tr[last()-1]/td[last()]");
 	By IssueStat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']");
 	By IssueRes = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-resolution']");
 	String summarySeverity = "//th[contains(text(),'By Severity')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
@@ -33,9 +33,6 @@ public class POMUpdateIssue {
 	}
 
 	public boolean updateIssue(String stats, String reso) throws Exception {
-
-		boolean status = false;
-
 		new Select(driver.findElement(statusButton)).selectByVisibleText(stats);
 		Thread.sleep(1000);
 		new Select(driver.findElement(resolution)).selectByVisibleText(reso);
@@ -43,13 +40,7 @@ public class POMUpdateIssue {
 		driver.findElement(updateButton).click();
 		Thread.sleep(2000);
 
-		if (driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php")) {
-			status = false;
-		} else {
-			status = true;
-		}
-
-		return status;
+		return !driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php");
 	}
 
 	public void goToViewIssuePage() throws NoSuchElementException {

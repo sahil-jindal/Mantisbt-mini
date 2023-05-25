@@ -5,9 +5,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class POMSidebar {
-    By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
-    By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
-    By SummaryButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[6]/a/span");
+    By ViewIssueButton = By.xpath("//*[@id='sidebar']/ul/li[2]/a/span");
+    By ReportIssueButton = By.xpath("//*[@id='sidebar']/ul/li[3]/a/span");
+    By SummaryButton = By.xpath("//*[@id='sidebar']/ul/li[6]/a/span");
 
     WebDriver driver;
 

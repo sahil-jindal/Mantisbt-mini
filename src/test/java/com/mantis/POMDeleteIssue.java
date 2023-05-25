@@ -9,7 +9,6 @@ public class POMDeleteIssue {
 	By del = By.xpath("//input[@type='submit'][@value='Delete']");
 	By deletebutton = By.xpath("//input[@type='submit'][@value='Delete Issues']");
 
-
 	WebDriver driver;
 
 	public POMDeleteIssue(WebDriver driver) {

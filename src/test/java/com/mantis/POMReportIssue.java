@@ -7,13 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class POMReportIssue {
-	By Category = By.xpath("//*[@id=\"category_id\"]");
-	By Reproducibility = By.xpath("//*[@id=\"reproducibility\"]");
-	By Severity = By.xpath("//*[@id=\"severity\"]");
-	By Priority = By.xpath("//*[@id=\"priority\"]");
-	By Summ = By.xpath("//*[@id=\"summary\"]");
-	By Desc = By.xpath("//*[@id=\"description\"]");
-	By Submit = By.xpath("//*[@id=\"report_bug_form\"]/div/div[2]/div[2]/input");
+	By Category = By.xpath("//*[@id='category_id']");
+	By Reproducibility = By.xpath("//*[@id='reproducibility']");
+	By Severity = By.xpath("//*[@id='severity']");
+	By Priority = By.xpath("//*[@id='priority']");
+	By Summ = By.xpath("//*[@id='summary']");
+	By Desc = By.xpath("//*[@id='description']");
+	By Submit = By.xpath("//*[@id='report_bug_form']/div/div[2]/div[2]/input");
 	By IssueCat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr[@class='bug-header-data']//td[@class='bug-category']");
 	By IssueRepro = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-reproducibility']");
 	By IssueSev = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-severity']");
