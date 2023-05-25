@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import com.mantis.POMFilterIssues;
 import com.mantis.POMNavbar;
+import com.mantis.POMSidebar;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -19,6 +20,7 @@ public class FilterIssue {
 
 	private POMFilterIssues pomFilterIssues = new POMFilterIssues(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
+	private POMSidebar pomSidebar = new POMSidebar(driver);
 
 	public FilterIssue() {
 		System.out.printf("-----------------------------------------------------------------------------------%n");
@@ -43,7 +45,7 @@ public class FilterIssue {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");		
 		
 		try {
-			pomFilterIssues.goToViewIssuePage();
+			pomSidebar.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");

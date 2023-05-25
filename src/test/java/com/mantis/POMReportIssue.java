@@ -7,10 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class POMReportIssue {
-
-	By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
-	By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
-	By SummaryButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[6]/a/span");
 	By Category = By.xpath("//*[@id=\"category_id\"]");
 	By Reproducibility = By.xpath("//*[@id=\"reproducibility\"]");
 	By Severity = By.xpath("//*[@id=\"severity\"]");
@@ -37,14 +33,6 @@ public class POMReportIssue {
 
 	public POMReportIssue(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public void goToReportIssuePage() throws NoSuchElementException {
-		driver.findElement(ReportIssueButton).click();
-	}
-
-	public void goToViewIssuePage() throws NoSuchElementException {
-		driver.findElement(ViewIssueButton).click();
 	}
 
 	public void clickOnIssue(String issueId) throws NoSuchElementException {
@@ -122,10 +110,9 @@ public class POMReportIssue {
 	public void fetchSummaryDetails(String sever, String catog) {
 
 		IssueVariable iv = new IssueVariable();
-		driver.findElement(SummaryButton).click();
 
 		reqSummary[0] = driver.findElement(SummaryProject).getText();
-		
+
 		if (!driver.findElements(By.xpath(summaryStatus + "new" + traverse)).isEmpty())
 			reqSummary[1] = driver.findElement(By.xpath(summaryStatus + "new" + traverse)).getText();
 		else if (iv.status.containsKey("new"))
@@ -138,21 +125,16 @@ public class POMReportIssue {
 			reqSummary[3] = driver.findElement(By.xpath(summaryCategory + catog.split(" ")[2] + traverse)).getText();
 		else if (iv.catog.containsKey(catog))
 			reqSummary[3] = Integer.toString(0);
-		
-//		System.out.println(reqSummary[0]);
-//		System.out.println(reqSummary[1]);
-//		System.out.println(reqSummary[2]);
-//		System.out.println(reqSummary[3]);
+
+		// System.out.println(reqSummary[0]);
+		// System.out.println(reqSummary[1]);
+		// System.out.println(reqSummary[2]);
+		// System.out.println(reqSummary[3]);
 	}
 
 	public boolean validateSummary(String sever, String catog) throws NoSuchElementException {
 
-		boolean status = true;
-
-		driver.findElement(SummaryButton).click();
-
-		if (!driver.findElement(SummaryProject).getText().equals(Integer.toString(Integer.parseInt(reqSummary[0]) + 1)))
-			status = false;
+		boolean status = driver.findElement(SummaryProject).getText().equals(Integer.toString(Integer.parseInt(reqSummary[0]) + 1));
 
 		if (!driver.findElement(SummaryStatus).getText().equals(Integer.toString(Integer.parseInt(reqSummary[1]) + 1)))
 			status = false;

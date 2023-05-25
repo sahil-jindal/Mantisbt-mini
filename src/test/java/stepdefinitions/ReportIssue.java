@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
+import com.mantis.POMSidebar;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,6 +19,7 @@ public class ReportIssue {
 
 	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
+	private POMSidebar pomSidebar = new POMSidebar(driver);
 
 	private String issueId;
 
@@ -44,7 +46,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","REPORT ISSUE BUTTON");
 		
 		try {
-			pomReportIssue.goToReportIssuePage();
+			pomSidebar.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -59,8 +61,9 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","FETCH SUMMARY DETAILS");
 		
 		try {
+			pomSidebar.goToSummaryPage();
 			pomReportIssue.fetchSummaryDetails(sever, catog);
-			pomReportIssue.goToReportIssuePage();
+			pomSidebar.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -83,7 +86,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VIEW ISSUE PAGE");
 		
 		try {
-			pomReportIssue.goToViewIssuePage();
+			pomSidebar.goToViewIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			fail("Exception in View Issue page button");
@@ -133,6 +136,8 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE SUMMARY PAGE");
 
 		try {
+			// Go to Summary Page here
+			//--------------------------------------
 			status = pomReportIssue.validateSummary(sever, catog);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {

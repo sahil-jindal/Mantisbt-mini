@@ -16,7 +16,7 @@ public class POMFilterIssues {
 	By severityselect = By.xpath("//form[@id='filters_form_open']//table//tr[2]/td[6]/select");
 	By Statuslink = By.xpath("//form[@id='filters_form_open']//table//tr[3]/td[3]/a");
 	By Statusselect = By.xpath("//form[@id='filters_form_open']//table//tr[4]/td[3]/select");
-	By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
+
 	By SubmitButton = By.xpath("//form[@id='filters_form_open']//input[@type='submit']");
 	By IssueList = By.xpath("//*[@class='column-id']");
 	By PriorityList = By.xpath("//*[@class='column-priority']/i");
@@ -29,10 +29,6 @@ public class POMFilterIssues {
 
 	public POMFilterIssues(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public void goToViewIssuePage() throws NoSuchElementException {
-		driver.findElement(ViewIssueButton).click();
 	}
 
 	public void applyPriorityFilter(String prior) throws Exception {

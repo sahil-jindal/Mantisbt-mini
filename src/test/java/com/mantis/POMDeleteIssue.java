@@ -8,21 +8,12 @@ public class POMDeleteIssue {
 
 	By del = By.xpath("//input[@type='submit'][@value='Delete']");
 	By deletebutton = By.xpath("//input[@type='submit'][@value='Delete Issues']");
-	By ViewIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[2]/a/span");
-	By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
+
 
 	WebDriver driver;
 
 	public POMDeleteIssue(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public void goToReportIssuePage() throws NoSuchElementException {
-		driver.findElement(ReportIssueButton).click();
-	}
-
-	public void goToViewIssuePage() throws NoSuchElementException {
-		driver.findElement(ViewIssueButton).click();
 	}
 
 	public void clickOnIssueId(String id) throws Exception {
@@ -37,10 +28,9 @@ public class POMDeleteIssue {
 	public boolean validateDelete(String id) throws Exception {
 		try {
 			driver.findElement(By.linkText(id)).click();
+			return false;
 		} catch (Exception e) {
 			return true;
 		}
-
-		return false;
 	}
 }
