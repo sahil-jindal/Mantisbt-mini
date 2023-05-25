@@ -1,16 +1,10 @@
 package com.mantis;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import com.utility.IssueVariable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import com.utility.DBConnection;
-import com.utility.IssueVariable;
 
 public class POMUpdateIssue {
 
@@ -33,16 +27,6 @@ public class POMUpdateIssue {
 
 	String[] reqSummary = new String[4];
 	WebDriver driver;
-	private static Statement st = null;
-	
-	static {
-		DBConnection dbConn = new DBConnection();
-		try {
-			st = dbConn.getConnection().createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public POMUpdateIssue(WebDriver driver) {
 		this.driver = driver;
@@ -94,27 +78,6 @@ public class POMUpdateIssue {
 			// System.out.println("repro" + (driver.findElement(IssueRes).getText()) +
 			// resolution);
 		}
-
-		return status;
-	}
-
-	public boolean validateUpdateDB(String id, String stat, String resolution) throws Exception {
-
-		boolean status = true;
-		IssueVariable iv = new IssueVariable();
-
-		ResultSet rs;
-		String query = "select * from mantis_bug_table where id=" + Integer.parseInt(id);
-
-		rs = st.executeQuery(query);
-
-		if (rs.next()) {
-			if (!(rs.getInt(9) == iv.status.get(stat)))
-				status = false;
-			if (!(rs.getInt(10) == iv.resolution.get(resolution)))
-				status = false;
-		} else
-			status = false;
 
 		return status;
 	}

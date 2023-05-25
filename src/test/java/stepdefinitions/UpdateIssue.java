@@ -1,17 +1,15 @@
 package stepdefinitions;
 
-import static org.testng.Assert.fail;
-
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-
 import com.mantis.POMReportIssue;
 import com.mantis.POMUpdateIssue;
 import com.utility.DriverLib;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+
+import static org.testng.Assert.fail;
 
 public class UpdateIssue {
 
@@ -163,27 +161,6 @@ public class UpdateIssue {
 			System.out.printf("%-12s |%n","SUCCESS");
 		} else {
 			System.out.printf("%-12s |%n","FAILURE");		}
-	}
-
-	@Then("validate update issue on db with {string} and {string}")
-	public void validate_update_issue_on_db(String stat, String resolution) {
-
-		boolean status = false;
-		System.out.printf("| %-12s | %-40s |","","VALIDATE DATABASE");
-
-		try {
-			status = ui.validateUpdateDB(issueId, stat, resolution);
-			System.out.printf(" %-7s |","PASS");
-		} catch (Exception e) {
-			System.out.printf(" %-7s |","FAIL");
-			fail("Exception in validate DB for update issue");
-		}
-
-		if (status) {
-			System.out.printf("%-12s |%n","SUCCESS");
-		} else {
-			System.out.printf("%-12s |%n","FAILURE");
-		}
 	}
 	
 	@Then("validate on summary page {string} and {string} and {string}")

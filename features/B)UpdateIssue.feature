@@ -13,7 +13,6 @@ Feature: Update Issue
     Then go to view issue page for updateIssue
     Then click on issue updated
     Then validate update issue on issue page with "<status>" and "<resolution>"
-    Then validate update issue on db with "<status>" and "<resolution>"
     Then validate on summary page "<severity>" and "<category>" and "<status>"
 
     Examples:

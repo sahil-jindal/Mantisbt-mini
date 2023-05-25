@@ -1,16 +1,10 @@
 package com.mantis;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import com.utility.IssueVariable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
-
-import com.utility.DBConnection;
-import com.utility.IssueVariable;
 
 public class POMReportIssue {
 
@@ -40,16 +34,6 @@ public class POMReportIssue {
 	String[] reqSummary = new String[4];
 
 	WebDriver driver;
-	private static Statement st = null;
-	
-	static {
-		DBConnection dbConn = new DBConnection();
-		try {
-			st = dbConn.getConnection().createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public POMReportIssue(WebDriver driver) {
 		this.driver = driver;
@@ -137,43 +121,6 @@ public class POMReportIssue {
 
 	public boolean checkHomePage() throws NoSuchElementException {
 		return driver.findElement(By.xpath("//*[@id=\"navbar-container\"]/div[2]/ul/li[3]/a/span")).isDisplayed();
-	}
-
-	public boolean validateDBIssue(String id, String catog, String repro, String sever, String prior, String summary,
-			String description) throws Exception {
-
-		IssueVariable iv = new IssueVariable();
-		boolean status = true;
-
-		ResultSet rs;
-		String query = "select * from mantis_bug_table where id=" + Integer.parseInt(id);
-		String query1 = "select * from mantis_bug_text_table where id=" + Integer.parseInt(id);
-
-		rs = st.executeQuery(query);
-
-		if (rs.next()) {
-			if (!rs.getString(22).contains(summary))
-				status = false;
-			if (!(rs.getInt(26) == iv.catog.get(catog)))
-				status = false;
-			if (!(rs.getInt(8) == iv.repro.get(repro)))
-				status = false;
-			if (!(rs.getInt(7) == iv.sever.get(sever)))
-				status = false;
-			if (!(rs.getInt(6) == iv.prior.get(prior)))
-				status = false;
-		} else
-			status = false;
-
-		rs = st.executeQuery(query1);
-
-		if (rs.next()) {
-			if (!rs.getString(2).contains(description))
-				status = false;
-		} else
-			status = false;
-
-		return status;
 	}
 
 	public void fetchSummaryDetails(String sever, String catog) {

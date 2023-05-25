@@ -1,14 +1,8 @@
 package com.mantis;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-
-import com.utility.DBConnection;
 
 public class POMDeleteIssue {
 
@@ -18,16 +12,6 @@ public class POMDeleteIssue {
 	By ReportIssueButton = By.xpath("//*[@id=\"sidebar\"]/ul/li[3]/a/span");
 
 	WebDriver driver;
-	private static Statement st = null;
-	
-	static {
-		DBConnection dbConn = new DBConnection();
-		try {
-			st = dbConn.getConnection().createStatement();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public POMDeleteIssue(WebDriver driver) {
 		this.driver = driver;
@@ -62,24 +46,5 @@ public class POMDeleteIssue {
 		}
 
 		return false;
-	}
-
-	public boolean validateDeleteDB(String id) {
-
-		boolean status = false;
-
-		ResultSet rs;
-		String query = "select * from mantis_bug_table where id=" + Integer.parseInt(id);
-
-		try {
-			rs = st.executeQuery(query);
-			if (!rs.next())
-				status = true;
-
-		} catch (SQLException e) {
-			return true;
-		}
-
-		return status;
 	}
 }

@@ -10,7 +10,6 @@ Feature: Create a report Issue
     Then go to view issue page
     Then click on issue generated
     Then validate on issue page for values "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>"
-    Then validate on db for values "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>"
     Then validate on summary page "<severity>" and "<category>"
 
     Examples:

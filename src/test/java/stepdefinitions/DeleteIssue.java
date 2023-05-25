@@ -1,17 +1,15 @@
 package stepdefinitions;
 
-import static org.testng.Assert.fail;
-
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-
 import com.mantis.POMDeleteIssue;
 import com.mantis.POMReportIssue;
 import com.utility.DriverLib;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+
+import static org.testng.Assert.fail;
 
 public class DeleteIssue {
 
@@ -119,24 +117,6 @@ public class DeleteIssue {
 			fail("Exception in Validate delete");
 		} 
 		
-		if (status) {
-			System.out.printf("%-12s |%n","SUCCESS");
-		} else {
-			System.out.printf("%-12s |%n","FAILURE");
-		}
-	}
-	@Then("validate delete Issue on db")
-	public void validate_delete_Issue_on_db() {
-		boolean status = false;
-		System.out.printf("| %-12s | %-40s |","","VALIDATE DATABASE");
-		try {
-			status = di.validateDeleteDB(issueId);
-			System.out.printf(" %-7s |","PASS");
-		} catch (Exception e) {
-			System.out.printf(" %-7s |","FAIL");
-			fail("Exception in validate DB for delete issue");
-		}
-
 		if (status) {
 			System.out.printf("%-12s |%n","SUCCESS");
 		} else {

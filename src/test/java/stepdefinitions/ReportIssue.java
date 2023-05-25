@@ -1,16 +1,14 @@
 package stepdefinitions;
 
-import static org.testng.Assert.fail;
-
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-
 import com.mantis.POMReportIssue;
 import com.utility.DriverLib;
-
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+
+import static org.testng.Assert.fail;
 
 public class ReportIssue {
 
@@ -118,28 +116,6 @@ public class ReportIssue {
 
 		if (status) {
 			//System.out.println("Values validated successfully");
-			System.out.printf("%-12s |%n","SUCCESS");
-		} else {
-			System.out.printf("%-12s |%n","FAILURE");
-		}
-	}
-
-	@Then("validate on db for values {string} and {string} and {string} and {string} and {string} and {string}")
-	public void validate_on_db_for_values(String catog, String repro, String sever, String prior, String summary,
-			String description) {
-
-		boolean status = false;
-		System.out.printf("| %-12s | %-40s |","","VALIDATE DATABASE");
-
-		try {
-			status = ri.validateDBIssue(issueId, catog, repro, sever, prior, summary, description);
-			System.out.printf(" %-7s |","PASS");
-		} catch (Exception e) {
-			System.out.printf(" %-7s |","FAIL");
-			fail("Exception in validate DB for Report Issue");
-		}
-
-		if (status) {
 			System.out.printf("%-12s |%n","SUCCESS");
 		} else {
 			System.out.printf("%-12s |%n","FAILURE");

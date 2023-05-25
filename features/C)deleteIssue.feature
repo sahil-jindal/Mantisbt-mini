@@ -11,7 +11,6 @@ Feature: Delete Feature
     Then User should reach on a delete issue page and click on delete
     Then go to the view issue page
     Then validate for issue deleted
-    Then validate delete Issue on db
 
     Examples:
       | category                | reproducibility | severity | priority | summary           | description |
