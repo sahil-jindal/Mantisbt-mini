@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class POMDeleteIssue {
 
-	By del = By.xpath("//input[@type='submit'][@value='Delete']");
-	By deletebutton = By.xpath("//input[@type='submit'][@value='Delete Issues']");
+	By confirmDeleteButton = By.xpath("//input[@type='submit'][@value='Delete Issues']");
 
 	WebDriver driver;
 
@@ -15,16 +14,15 @@ public class POMDeleteIssue {
 		this.driver = driver;
 	}
 
-	public void clickOnIssueId(String id) throws Exception {
+	public void clickOnIssueId(String id) {
 		driver.findElement(By.linkText(id)).click();
 	}
 
-	public void clickOnDeleteButton() throws NoSuchElementException {
-		driver.findElement(del).click();
-		driver.findElement(deletebutton).click();
+	public void clickOnConfirmDeleteButton() throws NoSuchElementException {
+		driver.findElement(confirmDeleteButton).click();
 	}
 
-	public boolean validateDelete(String id) throws Exception {
+	public boolean validateDelete(String id) {
 		try {
 			driver.findElement(By.linkText(id)).click();
 			return false;

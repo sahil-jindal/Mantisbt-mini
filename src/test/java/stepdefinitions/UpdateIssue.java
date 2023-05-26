@@ -20,6 +20,7 @@ public class UpdateIssue {
     private final POMNavbar pomNavbar = new POMNavbar(driver);
     private final POMSidebar pomSidebar = new POMSidebar(driver);
     private final POMIssues pomIssues = new POMIssues(driver);
+    private final POMIssue pomIssue = new POMIssue(driver);
 
     private String issueId;
 
@@ -97,7 +98,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "CLICK ON EDIT BUTTON");
 
 		try {
-            pomUpdateIssue.clickOnEditButton();
+            pomIssue.clickOnEditButton();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
             Thread.sleep(1000);
         } catch (Exception e) {

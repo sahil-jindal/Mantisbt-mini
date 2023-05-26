@@ -1,9 +1,6 @@
 package stepdefinitions;
 
-import com.mantis.POMDeleteIssue;
-import com.mantis.POMNavbar;
-import com.mantis.POMReportIssue;
-import com.mantis.POMSidebar;
+import com.mantis.*;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,6 +19,7 @@ public class DeleteIssue {
 	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
+	private POMIssue pomIssue = new POMIssue(driver);
 
 	private String issueId = "";
 
@@ -95,7 +93,8 @@ public class DeleteIssue {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON DELETE BUTTON");
 
 		try {
-			pomDeleteIssue.clickOnDeleteButton();
+			pomIssue.clickOnDeleteButton();
+			pomDeleteIssue.clickOnConfirmDeleteButton();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");

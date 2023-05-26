@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 
 public class POMUpdateIssue {
 
-	By editButton = By.xpath("//input[@type='submit'][@value='Edit']");
 	By statusButton = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']/select");
 	By resolution = By.xpath("//*[@id='resolution']");
 	By updateButton = By.xpath("//*[@id='update_bug_form']/div/div[3]/input");
@@ -41,9 +40,7 @@ public class POMUpdateIssue {
 		driver.findElement(By.linkText(issueId)).click();
 	}
 
-	public void clickOnEditButton() throws NoSuchElementException {
-		driver.findElement(editButton).click();
-	}
+
 
 	public void fetchSummaryDetails(String sever, String catog, String statusc) throws NoSuchElementException {
 
