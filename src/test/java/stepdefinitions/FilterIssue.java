@@ -1,26 +1,23 @@
 package stepdefinitions;
 
-import com.mantis.POMFilterIssues;
+import com.mantis.POMIssues;
 import com.mantis.POMNavbar;
 import com.mantis.POMSidebar;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 import static org.testng.Assert.fail;
 
 public class FilterIssue {
 
-	boolean status = true, check = true;
-
 	private DriverLib driverLib = new DriverLib();
 	private WebDriver driver = driverLib.getWebDriver();
 
-	private POMFilterIssues pomFilterIssues = new POMFilterIssues(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
+	private POMIssues pomIssues = new POMIssues(driver);
 
 	public FilterIssue() {
 		System.out.printf("-----------------------------------------------------------------------------------%n");
@@ -34,7 +31,7 @@ public class FilterIssue {
 		try {
 			pomNavbar.checkHomePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
 			fail("Exception in check home page");
 		}
@@ -58,7 +55,7 @@ public class FilterIssue {
 		System.out.printf("| %-12s | %-40s |","","APPLY PRIORITY FILTER");
 		
 		try {
-			pomFilterIssues.applyPriorityFilter(prior);
+			pomIssues.applyPriorityFilter(prior);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -71,7 +68,7 @@ public class FilterIssue {
 		System.out.printf("| %-12s | %-40s |","","APPLY SEVERITY FILTER");
 		
 		try {
-			pomFilterIssues.applySeverittyFilter(sever);
+			pomIssues.applySeverittyFilter(sever);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -84,7 +81,7 @@ public class FilterIssue {
 		System.out.printf("| %-12s | %-40s |","","APPLY REPORTER FILTER");
 		
 		try {
-			pomFilterIssues.applyStatusFilter(stat);
+			pomIssues.applyStatusFilter(stat);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
@@ -98,7 +95,7 @@ public class FilterIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ALL FILTERS");	
 		
 		try {
-			status = pomFilterIssues.validateFilter(prior, sever, stat);
+			status = pomIssues.validateFilter(prior, sever, stat);
 			System.out.printf(" %-7s |","PASS");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |","FAIL");
