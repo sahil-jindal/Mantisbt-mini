@@ -21,7 +21,6 @@ public class UpdateIssue {
     private final POMSidebar pomSidebar = new POMSidebar(driver);
     private final POMIssues pomIssues = new POMIssues(driver);
     private final POMIssue pomIssue = new POMIssue(driver);
-    private final POMSummaryPage pomSummaryPage = new POMSummaryPage(driver);
 
     private String issueId;
 
@@ -45,21 +44,10 @@ public class UpdateIssue {
 
     @Given("User creates an issue with values {string} {string} {string} {string} {string} {string} {string}")
     public void user_creates_an_issue(String catog, String repro, String sever, String prior, String summary, String description, String stat) {
-        System.out.printf("| %-12s | %-40s |", "", "FETCH SUMMARY DETAILS");
-
-		try {
-            pomSidebar.goToSummaryPage();
-            pomSummaryPage.fetchSummaryDetails(sever, catog, stat);
-            pomSidebar.goToReportIssuePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in fetch summary details");
-        }
-
         System.out.printf("| %-12s | %-40s |", "", "CREATE ISSUE");
 
         try {
+            pomSidebar.goToReportIssuePage();
             issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (Exception e) {
@@ -163,27 +151,6 @@ public class UpdateIssue {
         } catch (NoSuchElementException e) {
             System.out.printf(" %-7s |", "FAIL");
             fail("Exception in Validate update");
-        }
-        if (status) {
-            System.out.printf("%-12s |%n", "SUCCESS");
-        } else {
-            System.out.printf("%-12s |%n", "FAILURE");
-        }
-    }
-
-    @Then("validate on summary page {string} and {string} and {string}")
-    public void validate_on_summary_page_and_and(String sever, String catog, String stat) {
-        boolean status = false;
-        System.out.printf("| %-12s | %-40s |", "", "VALIDATE SUMMARY PAGE");
-
-        try {
-            pomSidebar.goToSummaryPage();
-            status = pomSummaryPage.validateSummary(sever, catog, stat);
-            System.out.printf(" %-7s |", "PASS");
-        } catch (Exception e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "FAILURE");
-            e.printStackTrace();
-            fail("Exception in validate Summary page for Update Issue");
         }
         if (status) {
             System.out.printf("%-12s |%n", "SUCCESS");

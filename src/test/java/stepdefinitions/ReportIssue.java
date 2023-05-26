@@ -19,7 +19,6 @@ public class ReportIssue {
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
 	private POMIssues pomIssues = new POMIssues(driver);
-	private POMSummaryPage pomSummaryPage = new POMSummaryPage(driver);
 
 	private String issueId;
 
@@ -58,21 +57,10 @@ public class ReportIssue {
 	public void user_enter_the_issue_details_click_on_submit_issue(String catog, String repro, String sever,
 			String prior, String summary, String description) {
 		
-		System.out.printf("| %-12s | %-40s |","","FETCH SUMMARY DETAILS");
-		
-		try {
-			pomSidebar.goToSummaryPage();
-			pomSummaryPage.fetchSummaryDetails(sever, catog);
-			pomSidebar.goToReportIssuePage();
-			System.out.printf(" %-7s |%-12s |%n","PASS", "");
-		} catch (Exception e) {
-			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
-			fail("Exception in Fetch Summary Details");
-		}
-		
 		System.out.printf("| %-12s | %-40s |","","CREATE ISSUE");
 		
 		try {
+			pomSidebar.goToReportIssuePage();
 			issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
@@ -123,28 +111,6 @@ public class ReportIssue {
 
 		if (status) {
 			//System.out.println("Values validated successfully");
-			System.out.printf("%-12s |%n","SUCCESS");
-		} else {
-			System.out.printf("%-12s |%n","FAILURE");
-		}
-	}
-
-	@Then("validate on summary page {string} and {string}")
-	public void validate_on_summary_page(String sever, String catog) {
-
-		boolean status = false;
-		System.out.printf("| %-12s | %-40s |","","VALIDATE SUMMARY PAGE");
-
-		try {
-			pomSidebar.goToSummaryPage();
-			status = pomSummaryPage.validateSummary(sever, catog);
-			System.out.printf(" %-7s |","PASS");
-		} catch (NoSuchElementException e) {
-			System.out.printf(" %-7s |","FAIL");
-			fail("Exception in validate Summary page for Report Issue");
-		}
-
-		if (status) {
 			System.out.printf("%-12s |%n","SUCCESS");
 		} else {
 			System.out.printf("%-12s |%n","FAILURE");
