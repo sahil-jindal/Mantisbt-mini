@@ -10,7 +10,7 @@ public class POMReportIssue {
 	By Reproducibility = By.xpath("//*[@id='reproducibility']");
 	By Severity = By.xpath("//*[@id='severity']");
 	By Priority = By.xpath("//*[@id='priority']");
-	By Summ = By.xpath("//*[@id='summary']");
+	By Summary = By.xpath("//*[@id='summary']");
 	By Desc = By.xpath("//*[@id='description']");
 	By Submit = By.xpath("//*[@id='report_bug_form']/div/div[2]/div[2]/input");
 
@@ -41,7 +41,7 @@ public class POMReportIssue {
 		new Select(driver.findElement(Priority)).selectByVisibleText(prior);
 		Thread.sleep(1000);
 
-		driver.findElement(Summ).sendKeys(summary);
+		driver.findElement(Summary).sendKeys(summary);
 		Thread.sleep(1000);
 
 		driver.findElement(Desc).sendKeys(description);
