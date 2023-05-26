@@ -18,8 +18,9 @@ public class POMIssues {
 
     public POMIssues(WebDriver driver) { this.driver = driver; }
 
-    public boolean validateIssue(String catog, String repro, String sever, String prior, String summary,
-                                 String description) throws NoSuchElementException {
+    public boolean validateIssue(String catog, String repro, String sever, String prior, 
+        String summary, String description) throws NoSuchElementException {
+        
         boolean status = true;
 
         if (!catog.contains(driver.findElement(IssueCat).getText())) {
