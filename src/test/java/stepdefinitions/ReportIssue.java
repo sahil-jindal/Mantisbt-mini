@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import com.mantis.POMIssues;
 import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
 import com.mantis.POMSidebar;
@@ -20,6 +21,7 @@ public class ReportIssue {
 	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
+	private POMIssues pomIssues = new POMIssues(driver);
 
 	private String issueId;
 
@@ -114,7 +116,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE ON ISSUE PAGE");
 		
 		try {
-			status = pomReportIssue.validateIssue(catog, repro, sever, prior, summary, description);
+			status = pomIssues.validateIssue(catog, repro, sever, prior, summary, description);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");

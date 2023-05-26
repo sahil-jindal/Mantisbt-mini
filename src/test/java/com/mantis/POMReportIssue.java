@@ -14,12 +14,6 @@ public class POMReportIssue {
 	By Summ = By.xpath("//*[@id='summary']");
 	By Desc = By.xpath("//*[@id='description']");
 	By Submit = By.xpath("//*[@id='report_bug_form']/div/div[2]/div[2]/input");
-	By IssueCat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr[@class='bug-header-data']//td[@class='bug-category']");
-	By IssueRepro = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-reproducibility']");
-	By IssueSev = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-severity']");
-	By IssuePri = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-priority']");
-	By IssueSum = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-summary']");
-	By IssueDesc = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-description']");
 	String summarySeverity = "//th[contains(text(),'By Severity')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
@@ -39,42 +33,7 @@ public class POMReportIssue {
 		driver.findElement(By.linkText(issueId)).click();
 	}
 
-	public boolean validateIssue(String catog, String repro, String sever, String prior, String summary,
-			String description) throws NoSuchElementException {
-		boolean status = true;
 
-		if (!catog.contains(driver.findElement(IssueCat).getText())) {
-			status = false;
-			System.out.println("cat" + (driver.findElement(IssueCat).getText()) + catog);
-		}
-		
-		if (!repro.contains(driver.findElement(IssueRepro).getText())) {
-			status = false;
-			System.out.println("repro" + (driver.findElement(IssueRepro).getText()) + repro);
-		}
-		
-		if (!sever.contains(driver.findElement(IssueSev).getText())) {
-			status = false;
-			System.out.println("sever" + (driver.findElement(IssueSev).getText()) + sever);
-		}
-		
-		if (!prior.contains(driver.findElement(IssuePri).getText())) {
-			status = false;
-			System.out.println("prior" + (driver.findElement(IssuePri).getText()) + prior);
-		}
-		
-		if (!driver.findElement(IssueSum).getText().contains(summary)) {
-			status = false;
-			System.out.println("sum" + (driver.findElement(IssueSum).getText()) + summary);
-		}
-		
-		if (!description.contains(driver.findElement(IssueDesc).getText())) {
-			status = false;
-			System.out.println("desc" + (driver.findElement(IssueDesc).getText()) + description);
-		}
-		
-		return status;
-	}
 
 	public String createIssue(String catog, String repro, String sever, String prior, String summary,
 			String description) throws Exception {

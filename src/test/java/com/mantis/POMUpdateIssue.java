@@ -13,8 +13,6 @@ public class POMUpdateIssue {
 	By resolution = By.xpath("//*[@id='resolution']");
 	By updateButton = By.xpath("//*[@id='update_bug_form']/div/div[3]/input");
 	By newStatus = By.xpath("//*[@id='history']/div[2]/div/div/table/tbody/tr[last()-1]/td[last()]");
-	By IssueStat = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-status']");
-	By IssueRes = By.xpath("//div[@class='table-responsive'][1]/table/tbody//tr/td[@class='bug-resolution']");
 	String summarySeverity = "//th[contains(text(),'By Severity')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryStatus = "//th[contains(text(),'By Status')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
 	String summaryCategory = "//th[contains(text(),'By Category')]/parent::tr/parent::thead/parent::table/tbody/tr//td[contains(text(),'";
@@ -45,20 +43,6 @@ public class POMUpdateIssue {
 
 	public void clickOnEditButton() throws NoSuchElementException {
 		driver.findElement(editButton).click();
-	}
-
-	public boolean validateUpdate(String stat, String resolution) throws NoSuchElementException {
-
-		boolean status = stat.contains(driver.findElement(IssueStat).getText());
-
-		// System.out.println("cat" + (driver.findElement(IssueStat).getText()) + stat);
-		if (!resolution.contains(driver.findElement(IssueRes).getText())) {
-			status = false;
-			// System.out.println("repro" + (driver.findElement(IssueRes).getText()) +
-			// resolution);
-		}
-
-		return status;
 	}
 
 	public void fetchSummaryDetails(String sever, String catog, String statusc) throws NoSuchElementException {

@@ -1,9 +1,6 @@
 package stepdefinitions;
 
-import com.mantis.POMNavbar;
-import com.mantis.POMReportIssue;
-import com.mantis.POMSidebar;
-import com.mantis.POMUpdateIssue;
+import com.mantis.*;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,6 +19,7 @@ public class UpdateIssue {
     private final POMReportIssue pomReportIssue = new POMReportIssue(driver);
     private final POMNavbar pomNavbar = new POMNavbar(driver);
     private final POMSidebar pomSidebar = new POMSidebar(driver);
+    private final POMIssues pomIssues = new POMIssues(driver);
 
     private String issueId;
 
@@ -158,7 +156,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "VALIDATE ON ISSUE PAGE");
 
         try {
-            status = pomUpdateIssue.validateUpdate(stat, resolution);
+            status = pomIssues.validateUpdate(stat, resolution);
             System.out.printf(" %-7s |", "PASS");
         } catch (NoSuchElementException e) {
             System.out.printf(" %-7s |", "FAIL");
