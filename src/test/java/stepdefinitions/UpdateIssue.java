@@ -21,6 +21,7 @@ public class UpdateIssue {
     private final POMSidebar pomSidebar = new POMSidebar(driver);
     private final POMIssues pomIssues = new POMIssues(driver);
     private final POMIssue pomIssue = new POMIssue(driver);
+    private final POMSummaryPage pomSummaryPage = new POMSummaryPage(driver);
 
     private String issueId;
 
@@ -48,7 +49,7 @@ public class UpdateIssue {
 
 		try {
             pomSidebar.goToSummaryPage();
-            pomUpdateIssue.fetchSummaryDetails(sever, catog, stat);
+            pomSummaryPage.fetchSummaryDetails(sever, catog, stat);
             pomSidebar.goToReportIssuePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (NoSuchElementException e) {
@@ -177,7 +178,7 @@ public class UpdateIssue {
 
         try {
             pomSidebar.goToSummaryPage();
-            status = pomUpdateIssue.validateSummary(sever, catog, stat);
+            status = pomSummaryPage.validateSummary(sever, catog, stat);
             System.out.printf(" %-7s |", "PASS");
         } catch (Exception e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "FAILURE");
