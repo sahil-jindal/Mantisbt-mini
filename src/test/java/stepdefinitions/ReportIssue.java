@@ -1,9 +1,6 @@
 package stepdefinitions;
 
-import com.mantis.POMIssues;
-import com.mantis.POMNavbar;
-import com.mantis.POMReportIssue;
-import com.mantis.POMSidebar;
+import com.mantis.*;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,6 +19,7 @@ public class ReportIssue {
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
 	private POMIssues pomIssues = new POMIssues(driver);
+	private POMSummaryPage pomSummaryPage = new POMSummaryPage(driver);
 
 	private String issueId;
 
@@ -64,7 +62,7 @@ public class ReportIssue {
 		
 		try {
 			pomSidebar.goToSummaryPage();
-			pomReportIssue.fetchSummaryDetails(sever, catog);
+			pomSummaryPage.fetchSummaryDetails(sever, catog);
 			pomSidebar.goToReportIssuePage();
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
@@ -138,9 +136,8 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","VALIDATE SUMMARY PAGE");
 
 		try {
-			// Go to Summary Page here
-			//--------------------------------------
-			status = pomReportIssue.validateSummary(sever, catog);
+			pomSidebar.goToSummaryPage();
+			status = pomSummaryPage.validateSummary(sever, catog);
 			System.out.printf(" %-7s |","PASS");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |","FAIL");
