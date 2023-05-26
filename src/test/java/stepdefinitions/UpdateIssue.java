@@ -33,7 +33,7 @@ public class UpdateIssue {
     public void user_is_on_currently_on_homepage() {
         System.out.printf(" %-40s |", "LOGIN");
 
-		try {
+        try {
             pomNavbar.checkHomePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class UpdateIssue {
     public void user_clicks_on_edit_button() {
         System.out.printf("| %-12s | %-40s |", "", "CLICK ON EDIT BUTTON");
 
-		try {
+        try {
             pomIssue.clickOnEditButton();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
             Thread.sleep(1000);
@@ -118,7 +118,7 @@ public class UpdateIssue {
     public void go_to_view_issue_page_for_update() {
         System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
 
-		try {
+        try {
             pomSidebar.goToViewIssuePage();
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (NoSuchElementException e) {

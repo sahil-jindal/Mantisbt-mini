@@ -22,8 +22,6 @@ public class POMReportIssue {
 	public String createIssue(String catog, String repro, String sever, String prior, String summary,
 			String description) throws Exception {
 
-		String issueId = "";
-
 		new Select(driver.findElement(Category)).selectByVisibleText(catog);
 		Thread.sleep(1000);
 
@@ -45,8 +43,6 @@ public class POMReportIssue {
 		driver.findElement(Submit).click();
 		Thread.sleep(1000);
 
-		issueId = driver.findElement(By.xpath("//td[@class='bug-id']")).getText();
-
-		return issueId;
+		return driver.findElement(By.xpath("//td[@class='bug-id']")).getText();
 	}
 }

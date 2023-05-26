@@ -11,7 +11,9 @@ public class POMIssue {
 
     WebDriver driver;
 
-    public POMIssue(WebDriver driver) { this.driver = driver; }
+    public POMIssue(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public void clickOnDeleteButton() {
         driver.findElement(deleteButton).click();

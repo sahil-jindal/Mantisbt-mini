@@ -32,15 +32,16 @@ public class POMIssues {
     By Per_page_index = By.xpath("//td[@id='per_page_filter_target']");
     WebDriver driver;
 
-    public POMIssues(WebDriver driver) { this.driver = driver; }
+    public POMIssues(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public void clickOnIssue(String issueId) throws NoSuchElementException {
         driver.findElement(By.linkText(issueId)).click();
     }
 
-    public boolean validateIssue(String catog, String repro, String sever, String prior, 
-        String summary, String description) throws NoSuchElementException {
-        
+    public boolean validateIssue(String catog, String repro, String sever, String prior, String summary, String description) throws NoSuchElementException {
+
         boolean status = true;
 
         if (!catog.contains(driver.findElement(IssueCat).getText())) {
@@ -80,11 +81,8 @@ public class POMIssues {
 
         boolean status = stat.contains(driver.findElement(IssueStat).getText());
 
-        // System.out.println("cat" + (driver.findElement(IssueStat).getText()) + stat);
         if (!resolution.contains(driver.findElement(IssueRes).getText())) {
             status = false;
-            // System.out.println("repro" + (driver.findElement(IssueRes).getText()) +
-            // resolution);
         }
 
         return status;
@@ -126,9 +124,7 @@ public class POMIssues {
             List<WebElement> severlist = driver.findElements(SeverityList);
             List<WebElement> statlist = driver.findElements(StatusList);
             int issues_size = ilist.size();
-            if (prior.contains("none"))
-                if (plist.size() != 0)
-                    status = false;
+            if (prior.contains("none")) if (plist.size() != 0) status = false;
             for (int i = 1; i < issues_size; i++) {
                 if ((!prior.contains("none")) && (!prior.contains("any"))) {
                     if (!(plist.get(i - 1).getAttribute("title")).contains(prior)) {

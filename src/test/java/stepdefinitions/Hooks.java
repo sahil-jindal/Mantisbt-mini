@@ -11,30 +11,30 @@ import org.openqa.selenium.WebDriver;
 
 public class Hooks {
 
-	static DriverLib libDriver = new DriverLib();
-	static WebDriver driver = libDriver.getWebDriver();
+    static DriverLib libDriver = new DriverLib();
+    static WebDriver driver = libDriver.getWebDriver();
 
-	@BeforeAll
-	public static void beforeAll() {
-		System.out.printf("-----------------------------------------------------------------------------------%n");
-		System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "TEST", "STEPS", "RESULT", "VALIDATION");
-	}
-	
-	@Before
-	public void login() {
-		POMLoginClass login = new POMLoginClass(driver);
-		login.login("administrator", "root1");
-	}
+    @BeforeAll
+    public static void beforeAll() {
+        System.out.printf("-----------------------------------------------------------------------------------%n");
+        System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "TEST", "STEPS", "RESULT", "VALIDATION");
+    }
 
-	@After
-	public void logout() {
-		POMNavbar logout = new POMNavbar(driver);
-		logout.logout();
-		System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "", "LOGOUT", "PASS", "");
-	}
+    @AfterAll
+    public static void final_quit() {
+        System.out.printf("-----------------------------------------------------------------------------------%n");
+    }
 
-	@AfterAll
-	public static void final_quit() {
-		System.out.printf("-----------------------------------------------------------------------------------%n");
-	}
+    @Before
+    public void login() {
+        POMLoginClass login = new POMLoginClass(driver);
+        login.login("administrator", "root1");
+    }
+
+    @After
+    public void logout() {
+        POMNavbar logout = new POMNavbar(driver);
+        logout.logout();
+        System.out.printf("| %-12s | %-40s | %-7s |%-12s |%n", "", "LOGOUT", "PASS", "");
+    }
 }
