@@ -7,9 +7,9 @@ import io.cucumber.testng.CucumberOptions;
 
 @Listeners(ListenerTest.class)
 @CucumberOptions(
-	features = "Features",
-	glue = "stepdefinitions",
-	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
+	features = "features",
+	glue = "stepdefinitions"
+//	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
 //	tags = "@ReportIssue"
 //	tags = "@UpdateIssue"
 //	tags = "@DeleteIssue"
