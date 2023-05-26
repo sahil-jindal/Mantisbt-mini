@@ -1,7 +1,6 @@
 package com.mantis;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -18,10 +17,6 @@ public class POMReportIssue {
 
 	public POMReportIssue(WebDriver driver) {
 		this.driver = driver;
-	}
-
-	public void clickOnIssue(String issueId) throws NoSuchElementException {
-		driver.findElement(By.linkText(issueId)).click();
 	}
 
 	public String createIssue(String catog, String repro, String sever, String prior, String summary,

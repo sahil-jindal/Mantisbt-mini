@@ -86,7 +86,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE ID");
 
         try {
-            pomUpdateIssue.clickOnIssue(issueId);
+            pomIssues.clickOnIssue(issueId);
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (Exception e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
@@ -144,7 +144,7 @@ public class UpdateIssue {
         System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE UPDATED");
 
         try {
-            pomUpdateIssue.clickOnIssue(issueId);
+            pomIssues.clickOnIssue(issueId);
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (NoSuchElementException e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "");

@@ -18,6 +18,10 @@ public class POMIssues {
 
     public POMIssues(WebDriver driver) { this.driver = driver; }
 
+    public void clickOnIssue(String issueId) throws NoSuchElementException {
+        driver.findElement(By.linkText(issueId)).click();
+    }
+
     public boolean validateIssue(String catog, String repro, String sever, String prior, 
         String summary, String description) throws NoSuchElementException {
         

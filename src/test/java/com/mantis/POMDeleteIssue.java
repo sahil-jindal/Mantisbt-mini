@@ -14,10 +14,6 @@ public class POMDeleteIssue {
 		this.driver = driver;
 	}
 
-	public void clickOnIssueId(String id) {
-		driver.findElement(By.linkText(id)).click();
-	}
-
 	public void clickOnConfirmDeleteButton() throws NoSuchElementException {
 		driver.findElement(confirmDeleteButton).click();
 	}

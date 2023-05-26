@@ -1,7 +1,6 @@
 package com.mantis;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -25,9 +24,5 @@ public class POMUpdateIssue {
 		Thread.sleep(2000);
 
 		return !driver.getCurrentUrl().equals("http://localhost/mantisbt/bug_update.php");
-	}
-
-	public void clickOnIssue(String issueId) throws NoSuchElementException {
-		driver.findElement(By.linkText(issueId)).click();
 	}
 }

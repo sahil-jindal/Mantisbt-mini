@@ -98,7 +98,7 @@ public class ReportIssue {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE GENERATED");
 		
 		try {
-			pomReportIssue.clickOnIssue(issueId);
+			pomIssues.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (NoSuchElementException e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");

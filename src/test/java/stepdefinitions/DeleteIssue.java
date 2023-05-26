@@ -19,6 +19,7 @@ public class DeleteIssue {
 	private POMReportIssue pomReportIssue = new POMReportIssue(driver);
 	private POMNavbar pomNavbar = new POMNavbar(driver);
 	private POMSidebar pomSidebar = new POMSidebar(driver);
+	private POMIssues pomIssues = new POMIssues(driver);
 	private POMIssue pomIssue = new POMIssue(driver);
 
 	private String issueId = "";
@@ -80,7 +81,7 @@ public class DeleteIssue {
 		System.out.printf("| %-12s | %-40s |","","CLICK ON ISSUE ID");
 
 		try {
-			pomDeleteIssue.clickOnIssueId(issueId);
+			pomIssues.clickOnIssue(issueId);
 			System.out.printf(" %-7s |%-12s |%n","PASS", "");
 		} catch (Exception e) {
 			System.out.printf(" %-7s |%-12s |%n","FAIL", "");
