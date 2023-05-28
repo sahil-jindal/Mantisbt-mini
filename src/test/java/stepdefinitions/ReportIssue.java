@@ -3,7 +3,6 @@ package stepdefinitions;
 import com.mantis.POMIssues;
 import com.mantis.POMNavbar;
 import com.mantis.POMReportIssue;
-import com.mantis.POMSidebar;
 import com.utility.DriverLib;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -20,10 +19,10 @@ public class ReportIssue {
 
     private final POMReportIssue pomReportIssue = new POMReportIssue(driver);
     private final POMNavbar pomNavbar = new POMNavbar(driver);
-    private final POMSidebar pomSidebar = new POMSidebar(driver);
     private final POMIssues pomIssues = new POMIssues(driver);
 
     private String issueId;
+    private boolean issuePresent;
 
     public ReportIssue() {
         System.out.printf("-----------------------------------------------------------------------------------%n");
@@ -43,26 +42,12 @@ public class ReportIssue {
         }
     }
 
-    @When("user click on report issue button")
-    public void user_click_on_report_issue_button() {
-        System.out.printf("| %-12s | %-40s |", "", "REPORT ISSUE BUTTON");
-
-        try {
-            pomSidebar.goToReportIssuePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Report Issue button doesn't work");
-        }
-    }
-
     @When("user enter the issue details as {string} and {string} and {string} and {string} and {string} and {string} click on Submit issue")
     public void user_enter_the_issue_details_click_on_submit_issue(String catog, String repro, String sever, String prior, String summary, String description) {
 
         System.out.printf("| %-12s | %-40s |", "", "CREATE ISSUE");
 
         try {
-            pomSidebar.goToReportIssuePage();
             issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
         } catch (Exception e) {
@@ -71,28 +56,30 @@ public class ReportIssue {
         }
     }
 
-    @Then("go to view issue page")
-    public void go_to_view_issue_page() {
-        System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
-
-        try {
-            pomSidebar.goToViewIssuePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            fail("Exception in View Issue page button");
-        }
-    }
-
-    @Then("click on issue generated")
-    public void click_on_issue_generated() {
-        System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE GENERATED");
+    @Then("User clicks on a issue id")
+    public void user_clicks_on_a_issue_id() {
+        System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE ID");
 
         try {
             pomIssues.clickOnIssue(issueId);
+            issuePresent = true;
             System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
+        } catch (Exception e) {
             System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
+            issuePresent = false;
             fail("Exception in issue generated button");
+        }
+    }
+
+    @Then("validate for issue deleted")
+    public void validate_for_issue_deleted() {
+        System.out.printf("| %-12s | %-40s |", "", "VALIDATE ISSUE ID DELETED");
+
+        if(issuePresent) {
+            System.out.printf("%-12s |%n", "FAILURE");
+        } else {
+            System.out.printf("%-12s |%n", "SUCCESS");
+            fail("Exception in issue deletion");
         }
     }
 
@@ -111,7 +98,6 @@ public class ReportIssue {
         }
 
         if (status) {
-            //System.out.println("Values validated successfully");
             System.out.printf("%-12s |%n", "SUCCESS");
         } else {
             System.out.printf("%-12s |%n", "FAILURE");

@@ -22,5 +22,4 @@ public class POMIssue {
     public void clickOnEditButton() throws NoSuchElementException {
         driver.findElement(editButton).click();
     }
-
 }

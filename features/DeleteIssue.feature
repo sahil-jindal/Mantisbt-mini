@@ -4,12 +4,13 @@ Feature: Delete Feature
 
   @DI
   Scenario Outline: Validate delete issue
-    Given User is on now on homepage
-    And User creates an issue for delete with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>"
-    When User click on view issues button for delete
-    And User clicks on a issue id for delete
+    Given user is on homepage
+    When user click on report issue button
+    And user enter the issue details as "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>" click on Submit issue
+    Then go to view issue page
+    Then User clicks on a issue id
     Then User should reach on a delete issue page and click on delete
-    Then go to the view issue page
+    Then go to view issue page
     Then validate for issue deleted
 
     Examples:

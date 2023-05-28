@@ -4,14 +4,15 @@ Feature: Update Issue
 
   @UI
   Scenario Outline: Validate update issue
-    Given User is on currently on homepage
-    And User creates an issue with values "<category>" "<reproducibility>" "<severity>" "<priority>" "<summary>" "<description>" "<status>"
-    When User click on view issues button
+    Given user is on homepage
+    When user click on report issue button
+    And user enter the issue details as "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>" click on Submit issue
+    Then go to view issue page
     Then User clicks on a issue id
     And User clicks on edit button
     And User updates status as "<status>" and resolution as "<resolution>"
-    Then go to view issue page for updateIssue
-    Then click on issue updated
+    Then go to view issue page
+    Then User clicks on a issue id
     Then validate update issue on issue page with "<status>" and "<resolution>"
 
     Examples:

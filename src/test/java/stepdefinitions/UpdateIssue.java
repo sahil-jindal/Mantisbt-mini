@@ -1,10 +1,10 @@
 package stepdefinitions;
 
-import com.mantis.*;
+import com.mantis.POMIssue;
+import com.mantis.POMIssues;
+import com.mantis.POMUpdateIssue;
 import com.utility.DriverLib;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
@@ -16,70 +16,12 @@ public class UpdateIssue {
     private final WebDriver driver = driverLib.getWebDriver();
 
     private final POMUpdateIssue pomUpdateIssue = new POMUpdateIssue(driver);
-    private final POMReportIssue pomReportIssue = new POMReportIssue(driver);
-    private final POMNavbar pomNavbar = new POMNavbar(driver);
-    private final POMSidebar pomSidebar = new POMSidebar(driver);
     private final POMIssues pomIssues = new POMIssues(driver);
     private final POMIssue pomIssue = new POMIssue(driver);
-
-    private String issueId;
 
     public UpdateIssue() {
         System.out.printf("-----------------------------------------------------------------------------------%n");
         System.out.printf("| %-12s |", "UPDATE ISSUE");
-    }
-
-    @Given("User is on currently on homepage")
-    public void user_is_on_currently_on_homepage() {
-        System.out.printf(" %-40s |", "LOGIN");
-
-        try {
-            pomNavbar.checkHomePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (Exception e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in check home page");
-        }
-    }
-
-    @Given("User creates an issue with values {string} {string} {string} {string} {string} {string} {string}")
-    public void user_creates_an_issue(String catog, String repro, String sever, String prior, String summary, String description, String stat) {
-        System.out.printf("| %-12s | %-40s |", "", "CREATE ISSUE");
-
-        try {
-            pomSidebar.goToReportIssuePage();
-            issueId = pomReportIssue.createIssue(catog, repro, sever, prior, summary, description);
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (Exception e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in create Issue of Update Issue");
-        }
-    }
-
-    @When("User click on view issues button")
-    public void click_on_view_issues_button() {
-        System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
-
-        try {
-            pomSidebar.goToViewIssuePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in View Issue page button");
-        }
-    }
-
-    @Then("User clicks on a issue id")
-    public void user_clicks_on_a_issue_id() {
-        System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE ID");
-
-        try {
-            pomIssues.clickOnIssue(issueId);
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (Exception e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in issue generated button");
-        }
     }
 
     @Then("User clicks on edit button")
@@ -114,32 +56,6 @@ public class UpdateIssue {
 
     }
 
-    @Then("go to view issue page for updateIssue")
-    public void go_to_view_issue_page_for_update() {
-        System.out.printf("| %-12s | %-40s |", "", "VIEW ISSUE PAGE");
-
-        try {
-            pomSidebar.goToViewIssuePage();
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in view issue page button");
-        }
-    }
-
-    @Then("click on issue updated")
-    public void click_on_issue_updated() {
-        System.out.printf("| %-12s | %-40s |", "", "CLICK ON ISSUE UPDATED");
-
-        try {
-            pomIssues.clickOnIssue(issueId);
-            System.out.printf(" %-7s |%-12s |%n", "PASS", "");
-        } catch (NoSuchElementException e) {
-            System.out.printf(" %-7s |%-12s |%n", "FAIL", "");
-            fail("Exception in issue updated button");
-        }
-    }
-
     @Then("validate update issue on issue page with {string} and {string}")
     public void validate_update_issue_on_issue_page(String stat, String resolution) {
         boolean status = false;
@@ -152,6 +68,7 @@ public class UpdateIssue {
             System.out.printf(" %-7s |", "FAIL");
             fail("Exception in Validate update");
         }
+
         if (status) {
             System.out.printf("%-12s |%n", "SUCCESS");
         } else {

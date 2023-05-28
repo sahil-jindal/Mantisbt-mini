@@ -8,7 +8,7 @@ Feature: Create a report Issue
     When user click on report issue button
     And user enter the issue details as "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>" click on Submit issue
     Then go to view issue page
-    Then click on issue generated
+    Then User clicks on a issue id
     Then validate on issue page for values "<category>" and "<reproducibility>" and "<severity>" and "<priority>" and "<summary>" and "<description>"
 
     Examples:

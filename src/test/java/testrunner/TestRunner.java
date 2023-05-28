@@ -7,11 +7,10 @@ import org.testng.annotations.Listeners;
 @Listeners(ListenerTest.class)
 @CucumberOptions(
 	features = "features",
-	glue = "stepdefinitions"
-//	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue or @FilterIssue"
+	glue = "stepdefinitions",
+//	tags = "@ReportIssue or @UpdateIssue or @DeleteIssue"
 //	tags = "@ReportIssue"
-//	tags = "@UpdateIssue"
+	tags = "@UpdateIssue"
 //	tags = "@DeleteIssue"
-//	tags = "@FilterIssue"
 )
 public class TestRunner extends AbstractTestNGCucumberTests { }
